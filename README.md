@@ -1,4 +1,4 @@
-# ManoelStore API - By Natanael Sebastião - Teste técnico Dev Juninho
+#ManoelStore API - By Natanael Sebastião 
 
 Microserviço para processamento de pedidos e cálculo de embalagens, construído com .NET (cumprindo o desafio técnico), SQL Server e Docker.
 
