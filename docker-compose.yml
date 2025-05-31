@@ -1,0 +1,47 @@
+
+
+services:
+  manoelstore-api:
+    container_name: manoelstore-api
+    build:
+      context: . #Current directory, where the Dockerfile is located
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" #Host:Container (HTTP)
+      - "8081:8081" #Host:Container (HTTPS)
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080;https://+:8081
+      - ConnectionStrings__DefaultConnection=Server=manoelstore-db;Database=ManoelStoreDb;User ID=sa;Password=${SA_PASSWORD};TrustServerCertificate=True
+    depends_on:
+      manoelstore-db:
+        condition: service_healthy 
+    networks:
+      - manoelstore-network
+
+  manoelstore-db:
+    container_name: manoelstore-db
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    ports:
+      - "1433:1433" 
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}" 
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer" 
+    healthcheck: 
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "${SA_PASSWORD}", "-Q", "SELECT 1"]
+      interval: 10s
+      retries: 10
+      start_period: 60s
+      timeout: 5s
+    volumes:
+      - manoelstore-db-data:/var/opt/mssql
+    networks:
+      - manoelstore-network
+
+volumes:
+  manoelstore-db-data:
+
+networks:
+  manoelstore-network:
+    driver: bridge
