@@ -23,7 +23,7 @@ Microserviço para processamento de pedidos e cálculo de embalagens, construíd
 
     ## SA_PASSWORD=DigitaSuaSenhaAqui
 
-        *Lembre-se de adicionar `.env` ao seu arquivo `.gitignore`!*
+        *Lembre-se de adicionar `.env` ao seu arquivo `.gitignore`! Eu esqueci XD *
 
 3.  **Construa e Inicie os Contêineres**:
     No diretório raiz do projeto (onde está o `docker-compose.yml`), execute:
