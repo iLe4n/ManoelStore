@@ -17,7 +17,7 @@ Microserviço para processamento de pedidos e cálculo de embalagens, construíd
     ```
 
 2.  **Configure a Senha do SQL Server (Obrigatório)**:
-    Na raiz do projeto, crie um arquivo chamado `password.env` com o seguinte conteúdo:
+    Na raiz do projeto, crie um arquivo chamado `password.env` (ou só .env, tanto faz) com o seguinte conteúdo:
 
     ***
 
